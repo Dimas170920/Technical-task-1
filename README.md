@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+Нужно разработать JavaScript-приложение, запрашивающее с сервера данные о людях и 
+отображающее их на web-странице. Приложение должно быть написано с использованием
+React.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Для получения данных небходимо отправить GET-запрос на https://venbest-test.herokuapp.com/.
+Ответ возвращается в формате JSON, и имеет следующий формат:
 
-## Available Scripts
+```
+[{
+	name: 'Александр',			
+	lastname: 'Кислицкий',		
+	age: 12,			
+	sex: 'm'			//пол: 'm' -  мужской, 'f' - женский
+},{
+	//...
+}]
+```
 
-In the project directory, you can run:
+Данные должны отобразится на странице в виде списка элементов, в которых будет
+содержаться информация о каждом человеке. Над этим списком должна быть область
+с полями ввода для фильтров по имени, фамилии, возрасту и полу, как показано
+на схеме:
 
-### `yarn start`
+```
+|------Фильтры-------|
+| Имя     [        ] |
+| Фамилия [        ] |
+| Возраст [        ] |    
+| Пол (*) м () ж     |
+|____________________|
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-----------------------------
+Алксанд Кислицкий 
+Возраст: 20
+Пол: мужской
+-----------------------------
+Юлия Ларченко 
+Возраст: 19
+Пол: женский
+-----------------------------
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Поля для ввода фильтров по фамилии, имени и возрасту должны быть текстовыми.
+При изменении текста в фильтре по фамилии или имени должны быть отображены только
+те люди, в имени или фамилии которых встречается подстрока, указанная в фильтре.
+Т.е. при вводе в поле фильтра по фамилии текста "Кисл", в списке должен быть показан
+только Александр Кислицкий. При изменении текста в фильтре по возрасту должны
+быть отображены только те люде, возраст которых точно соответствует значению,
+указанному в фильтре.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Фильтр по полу должен быть представлен двумя чекбоксами, при их изменении
+список должен отображать лиц того пола (полов), чекбоксы которых отмечены.
